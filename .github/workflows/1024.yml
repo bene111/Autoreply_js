@@ -20,12 +20,8 @@ jobs:
           node-version: 10.x
     - name: npm install
       run : |
-        npm i
+        npm install
 
-    #- name: install env
-    #  run :
-
-     #   pip3 install requests onetimepass pillow
 
     - name: "运行自动回复"
       env:
