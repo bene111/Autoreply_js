@@ -1,0 +1,35 @@
+name: 1024-AutoReply
+
+on:
+  workflow_dispatch: # 手动触发
+  push:
+    branches:
+      - Multi_User
+  schedule:
+    - cron: '16 6 * * *'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: checkout actions
+      run : |
+        npm i
+
+    #- name: install env
+    #  run :
+
+     #   pip3 install requests onetimepass pillow
+
+    - name: run cl_reply.js
+      env:
+        clcookie: ${{ secrets.CLCOOKIE }}
+        UA: ${{ secrets.UA }}
+        clreplycount: ${{ secrets.CLREPLYCOUNT }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+
+      run:
+        node cl_reply.js
