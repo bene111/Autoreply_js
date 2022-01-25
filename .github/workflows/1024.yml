@@ -1,4 +1,4 @@
-name: 1024-AutoReply
+name: AutoReply_js
 
 on:
   workflow_dispatch: # 手动触发
@@ -13,8 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: checkout actions
+    - uses: actions/checkout@v1
+    - name: Use Node.js 10.x
+      uses: actions/setup-node@v1
+      with:
+          node-version: 10.x
+    - name: npm install
       run : |
         npm i
 
@@ -23,7 +27,7 @@ jobs:
 
      #   pip3 install requests onetimepass pillow
 
-    - name: run cl_reply.js
+    - name: "运行自动回复"
       env:
         clcookie: ${{ secrets.CLCOOKIE }}
         UA: ${{ secrets.UA }}
@@ -31,5 +35,5 @@ jobs:
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
-      run:
+      run: |
         node cl_reply.js
