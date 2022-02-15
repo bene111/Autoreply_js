@@ -74,7 +74,7 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     var a = random(0,reply_news_arr.length - 1)
                     var reply_news = reply_news_arr[a]
                     var x = random(0,tidarrs.length - 1)
-                    var y = random(1025000,1600000)
+                    var y = await random(1025000,1600000)
                     console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
