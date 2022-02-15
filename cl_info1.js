@@ -20,7 +20,7 @@ if (process.env.CLCOOKIE1) {
 }
 
 let time = new Date()
-console.log(time)
+console.log(time.getHours())
 if (process.env.UA1) {
     UA = process.env.UA1
 }
