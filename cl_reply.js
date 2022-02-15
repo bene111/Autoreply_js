@@ -356,7 +356,7 @@ async function getbaseinfo() {
                        gx = /貢獻\:(.+?)\|/.exec(data)[1]
                        tz = /共發表帖子\:(.+?)\|/.exec(data)[1]
                        //console.log(`用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
-                       message += `用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
+                       message += `用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}\n`
                         var reblacklist = /action=show&username\=(.+?)\"\>/g
                         //console.log(data)
                         blacklist = data.match(reblacklist)
