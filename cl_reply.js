@@ -210,8 +210,9 @@ async function getreadmessage(newmessageurl,js) {
 }
 
 async function getbaseinfo() {
+    let head = await geturl()
     return new Promise(resolve => {
-        axios.get(geturl('index.php'), async (err, resp, data) => {
+        axios.get('http://t66y.com/index.php', option), async (err, resp, data) => {
             try {
                 if (err) {
                     $.logErr(err)
@@ -287,7 +288,7 @@ async function getbankinfo() {
 
 function geturl(url) {
     const options = {
-        url: "http://t66y.com/" + url,
+        url: "http://t66y.com/",// + url,
         headers: {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Accept-Encoding': 'gzip, deflate',
