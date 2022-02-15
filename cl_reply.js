@@ -15,6 +15,7 @@ if (process.env.UA1) {
 }
 console.log('开始3')
 //!(async () => {
+async functin main() {
     if (!clcookie1) {
         $.msg($.name, '请先添加cookie');
         return;
@@ -75,6 +76,7 @@ console.log('开始3')
             $.msg($.name, '', message);
         }
     }
+}
 /*})()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
