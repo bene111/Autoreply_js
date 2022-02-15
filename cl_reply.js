@@ -2,7 +2,7 @@
 22 0,20 * * * caoliu论坛信息查询
 */
 console.log('小草信息查询')
-var $ = new Env("小草信息查询");
+
 
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
@@ -22,7 +22,7 @@ async function main() {
         return;
     }
     if (!UA) {
-        console.log('需手动抓取ua才可运行,且需保证cookie与ua对应,变量为：clua')
+        console.log('需手动抓取ua才可运行,且需保证cookie与ua对应')
         return;
     }
     console.log("共" + clcookiesArr.length + "个账号")
@@ -30,14 +30,14 @@ async function main() {
     for (let i = 0; i < clcookiesArr.length; i++) {
         if (clcookiesArr[i]) {
             cookie = clcookiesArr[i]
-            $.index = i + 1;
-            $.nickName = '';
+            //$.index = i + 1;
+            //$.nickName = '';
             islogin = true
             isnewmessage = true
             var isrun = true
             newmessageurl=''
             jrft=''
-            console.log(`\n******开始【账号${$.index}】*********\n`);
+            console.log(`\n******开始【账号】*********\n`);
             await getbaseinfo()
             await $.wait(1500)
             await getmyuid()
@@ -224,7 +224,7 @@ async function getbaseinfo() {
                         } else if (data.indexOf('禁止發言') != -1) {
                             username = /font-weight\:bold\"\>(.+?)\</.exec(data)[1]
                             console.log('您的账号被禁言，请去查看原因，退出运行')
-                            await notify.sendNotify($.name,`用户${$.index}:${username}已被禁言，请去查看原因`)
+                            await notify.sendNotify($.name,`用户:${username}已被禁言，请去查看原因`)
                             isrun = false
                             return
                         }
@@ -237,8 +237,8 @@ async function getbaseinfo() {
                        money = /金錢\:(.+?)\|/.exec(data)[1]
                        gx = /貢獻\:(.+?)\|/.exec(data)[1]
                        tz = /共發表帖子\:(.+?)\|/.exec(data)[1]
-                       console.log(`用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
-                       message += `用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
+                       console.log(`用户：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
+                       message += `用户：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
 
                     }
                 }
