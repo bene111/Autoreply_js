@@ -10,7 +10,9 @@ let ismessage,UA='',myuid='',jrft=''
 
     clcookiesArr = [process.env.CLCOOKIE2];
 
+
 let time = new Date()
+console.log(time.getHours())
 if (process.env.UA2) {
     UA = process.env.UA2
 }
@@ -41,8 +43,6 @@ if (process.env.UA2) {
             await getmyuid()
             if (!islogin || !isrun) {               
                 continue
-            } else if (!isrun) {
-                continue
             }
             await $.wait(2000)
             await getbankinfo()
@@ -68,7 +68,7 @@ if (process.env.UA2) {
         }
     }
     //if (message !== '' && (ismessage || time.getHours()  == 21)) {
-    if (message) {    
+    if (message && ismessage) {    
         if ($.isNode()) {
             await tgBotNotify($.name, message, '', `\n`);
         } else {
@@ -219,6 +219,8 @@ async function getbaseinfo() {
                            console.log(`账号${$.index}cookie已失效，请重新抓取`)
                            islogin = false 
                            message += `账号${$.index}cookie已失效，请重新抓取\n\n`
+                           
+                           await tgBotNotify($.name,`用户${$.index}:${username}cookie已失效，请重新抓取`)
                            return
                         } else if (data.indexOf('禁止發言') != -1) {
                             username = /font-weight\:bold\"\>(.+?)\</.exec(data)[1]
