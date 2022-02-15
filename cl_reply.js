@@ -1,7 +1,7 @@
 /*
 22 0,20 * * * caoliu论坛信息查询
 */
-import axios from 'axios'
+const axios= require('axios')
 console.log('小草信息查询')
 
 
