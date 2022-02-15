@@ -4,7 +4,8 @@
 //const a = new Env('信息查询')
 const axios= require('axios')
 console.log('小草信息查询')
-
+const jsname = '晶彩天气日常'
+const $ = Env(jsname)
 
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
