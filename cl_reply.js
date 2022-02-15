@@ -15,7 +15,7 @@ if (process.env.UA1) {
 }
 console.log('开始3')
 //!(async () => {
-async functin main() {
+async function main() {
     if (!clcookie1) {
         $.msg($.name, '请先添加cookie');
         return;
@@ -84,7 +84,7 @@ async functin main() {
     .finally(() => {
         //$.done();
     })*/
-
+main()
 function getmyuid() {
     return new Promise(resolve => {
         $.get(geturl('profile.php'),async (err, resp, data) => {
