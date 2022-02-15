@@ -277,7 +277,7 @@ async function getbankinfo() {
                         dqdqtime = /到期时间：(.+?)\</.exec(data)[1]
                         allmoney = /总资产：(.+?)USD/.exec(data)[1]
                         //dqck = /定期存款：(.+?)\</.exec(data)[1]
-                        console.log(`活期存款：${hqck}\n活期利息：${hqlx}\n活期存款时间：${hqcktime}\n定期存款：${dqck}\n定期利息：${dqlx}\n定期存款时间：${dqcktime}\n定期到期时间：${dqdqtime}\n总资产：${allmoney}\n`)
+                        //console.log(`活期存款：${hqck}\n活期利息：${hqlx}\n活期存款时间：${hqcktime}\n定期存款：${dqck}\n定期利息：${dqlx}\n定期存款时间：${dqcktime}\n定期到期时间：${dqdqtime}\n总资产：${allmoney}\n`)
                         message += `活期存款：${hqck}\n活期利息：${hqlx}\n活期存款时间：${hqcktime}\n定期存款：${dqck}\n定期利息：${dqlx}\n定期存款时间：${dqcktime}\n定期到期时间：${dqdqtime}\n总资产：${allmoney}\n\n`
                       
                     }
