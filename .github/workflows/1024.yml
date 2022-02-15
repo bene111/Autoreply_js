@@ -25,10 +25,11 @@ jobs:
 
     - name: "运行自动回复"
       env:
-        clcookie: ${{ secrets.CLCOOKIE }}
-        UA: ${{ secrets.UA }}
+        CLCOOKIE1: ${{ secrets.CLCOOKIE }}
+        UA1: ${{ secrets.UA }}
         clreplycount: ${{ secrets.CLREPLYCOUNT }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
-      run: node cl_reply.js
+      run: |
+        node cl_reply.js
