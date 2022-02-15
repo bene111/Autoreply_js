@@ -78,7 +78,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     var reply_news = reply_news_arr[a]
                     var x = random(0,tidarrs.length - 1)
                     var y = random(minwaittime, maxwaittime)
-                    console.log(y)
+                    //console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
                     console.log(`当前在第 ${j+1} 次回复,回复内容为: ${reply_news} `)
