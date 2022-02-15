@@ -212,7 +212,7 @@ async function getreadmessage(newmessageurl,js) {
 async function getbaseinfo() {
     let head = await geturl()
     return new Promise(resolve => {
-        axios.get('http://t66y.com/index.php', option), async (err, resp, data) => {
+        axios.get('http://t66y.com/index.php', option, async (err, resp, data) => {
             try {
                 if (err) {
                     $.logErr(err)
