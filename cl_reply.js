@@ -75,6 +75,7 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     var reply_news = reply_news_arr[a]
                     var x = random(0,tidarrs.length - 1)
                     var y = random(1025000,1600000)
+                    console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
                     /console.log(`当前在第 ${j+1} 次回复,回复内容为: ${reply_news} `)
@@ -133,7 +134,7 @@ function getmyuid() {
                     if (data) {
                         //console.log(data)
                         myuid = /\（UID\:(\d+)\）/.exec(data)[1]
-                        console.log('UID:' + myuid)
+                        //console.log('UID:' + myuid)
                         await gettodaysend()
                     }
                 }
@@ -342,7 +343,7 @@ async function getbaseinfo() {
                        money = /金錢\:(.+?)\|/.exec(data)[1]
                        gx = /貢獻\:(.+?)\|/.exec(data)[1]
                        tz = /共發表帖子\:(.+?)\|/.exec(data)[1]
-                       console.log(`用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
+                       //console.log(`用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
                        message += `用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
                         var reblacklist = /action=show&username\=(.+?)\"\>/g
                         //console.log(data)
