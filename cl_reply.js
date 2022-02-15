@@ -74,7 +74,7 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     var a = random(0,reply_news_arr.length - 1)
                     var reply_news = reply_news_arr[a]
                     var x = random(0,tidarrs.length - 1)
-                    var y = await random(1025000,1600000)
+                    var y = random(1025000,1600000)
                     console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
@@ -94,11 +94,13 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     }
  
                     if (jrft > clreplycount) {
-                        console.log('当前当日发帖数量已超过设置值：' + clreplycount + '停止发帖')
+                        console.log('当前当日发帖数量已超过设置值：' + clreplycount + '\n停止发帖')
                         console.log('如需继续发帖请调大 CLREPLYCOUNT 值')
                         break;
                     }        
+                    if (!y || y < 100000) y = 200000
                     console.log(`随机等待${y/1000}秒后回复下一个\n`)
+                    
                     await $.wait(y)
                 }
                 //await reply()
