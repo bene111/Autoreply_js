@@ -105,7 +105,7 @@ function getmyuid() {
                         //console.log('UID:' + myuid)
                         
                         await gettodaysend()
-                      message += '\nUID:' + myuid + ''\n
+                      message += '\nUID:' + myuid + '\n'
                     }
                 }
             } catch (e) {
