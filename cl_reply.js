@@ -212,9 +212,10 @@ async function getreadmessage(newmessageurl,js) {
 async function getbaseinfo() {
     let head = await geturl()
     //return new Promise(resolve => {
-        let data = axios.get('http://t66y.com/index.php', {headers: head.headers})
+        let {data} = axios.get('http://t66y.com/index.php', {headers: head.headers})
 
                     if (data) {
+                        data = data.data
                         console.log('基础信息'+data)
                         data = JSON.stringfy(data)
                         console.log('基础'+data)
