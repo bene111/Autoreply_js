@@ -4,9 +4,9 @@ on:
   workflow_dispatch: # 手动触发
   push:
     branches:
-      - main
+      - main1
   schedule:
-    - cron: '6 6,13 * * *'
+    - cron: '6 0-13 * * *'
 
 
 jobs:
