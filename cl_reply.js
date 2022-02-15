@@ -209,7 +209,7 @@ async function getreadmessage(newmessageurl,js) {
 
 async function getbaseinfo() {
     return new Promise(resolve => {
-        $.get(geturl('index.php'), async (err, resp, data) => {
+        get(geturl('index.php'), async (err, resp, data) => {
             try {
                 if (err) {
                     $.logErr(err)
