@@ -1,7 +1,7 @@
 /*
 22 0,20 * * * caoliu论坛信息查询
 */
-const a = new Env('信息查询')
+//const a = new Env('信息查询')
 const axios= require('axios')
 console.log('小草信息查询')
 
@@ -211,7 +211,7 @@ async function getreadmessage(newmessageurl,js) {
 
 async function getbaseinfo() {
     return new Promise(resolve => {
-        get(geturl('index.php'), async (err, resp, data) => {
+        axios.get(geturl('index.php'), async (err, resp, data) => {
             try {
                 if (err) {
                     $.logErr(err)
