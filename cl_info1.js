@@ -51,8 +51,6 @@ if (process.env.UA1) {
             await getmyuid()
             if (!islogin || !isrun) {               
                 continue
-            } else if (!isrun) {
-                continue
             }
             await $.wait(2000)
             await getbankinfo()
@@ -229,6 +227,8 @@ async function getbaseinfo() {
                            console.log(`账号${$.index}cookie已失效，请重新抓取`)
                            islogin = false 
                            message += `账号${$.index}cookie已失效，请重新抓取\n\n`
+                           
+                           await tgBotNotify($.name,`用户${$.index}:${username}cookie已失效，请重新抓取`)
                            return
                         } else if (data.indexOf('禁止發言') != -1) {
                             username = /font-weight\:bold\"\>(.+?)\</.exec(data)[1]
