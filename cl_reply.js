@@ -241,7 +241,7 @@ async function getbaseinfo() {
                        message += `用户：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
 
                     }
-                }
+                
 
 }
 
