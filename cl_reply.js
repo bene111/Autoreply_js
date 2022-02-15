@@ -90,7 +90,7 @@ console.log('开始3')
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     })
     .finally(() => {
-        $.done();
+        //$.done();
     })
 
 function getmyuid() {
