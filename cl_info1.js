@@ -105,7 +105,7 @@ function getmyuid() {
                         //console.log('UID:' + myuid)
                         
                         await gettodaysend()
-                      message += '\nUID:' + myuid + '\n'
+                      message += 'UID:' + myuid + '\n'
                     }
                 }
             } catch (e) {
@@ -132,7 +132,7 @@ async function gettodaysend() {
                         var ft = /平均每日發帖\<\/th\>\<th\>(.+?)\</.exec(data)[1]
                         var jrft = /今日(\d+)篇/.exec(ft)[1]
                         //console.log(ft)
-                        message += `${ft}\n`
+                        message += `平均每日發帖：${ft}\n`
                     }
                 }
             } catch (e) {
