@@ -10,11 +10,11 @@ let ismessage,UA='',myuid='',jrft=''
 console.log('开始2')
 clcookie = process.env.CLCOOKIE1
 let time = new Date()
-if (process.env.UA) {
-    UA = process.env.clua
+if (process.env.UA1) {
+    UA = process.env.UA1
 }
 console.log('开始3')
-!(async () => {
+//!(async () => {
     if (!clcookie1) {
         $.msg($.name, '请先添加cookie');
         return;
@@ -75,13 +75,13 @@ console.log('开始3')
             $.msg($.name, '', message);
         }
     }
-})()
+/*})()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
     })
     .finally(() => {
         //$.done();
-    })
+    })*/
 
 function getmyuid() {
     return new Promise(resolve => {
