@@ -1,17 +1,18 @@
 /*
-22 14 * * * caoliu论坛自动回帖
+22 0,20 * * * caoliu论坛信息查询
 */
-const $ = new Env("小草自动回帖");
+const $ = new Env("小草信息查询");
 const notify = $.isNode() ? require('./sendNotify') : '';
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
-let ismessage,UA='',urlarr=[],authorarr=[],urlarrs=[],authorarrs=[],blacklist=[],blacklists=[],isrun,titlearr=[],titlearrs=[]
-let tidarrs=[],replycount='',reply_news='',reply_news_arr=[],myuid='',jrft=''
+let ismessage,UA='',myuid='',jrft=''
 if (process.env.clcookie) {
   if (process.env.clcookie.indexOf('&') > -1) {
     clcookiesArr = process.env.clcookie.split('&');
   } else if (process.env.clcookie.indexOf('\n') > -1) {
     clcookiesArr = process.env.clcookie.split('\n');
+  } else if (process.env.clcookie.indexOf('@') > -1) {
+    clcookiesArr = process.env.clcookie.split('@');
   } else {
     clcookiesArr = [process.env.clcookie];
   }
@@ -20,8 +21,7 @@ let time = new Date()
 if (process.env.clua) {
     UA = process.env.clua
 }
-reply_news_arr = ['1024','感谢分享','感谢你的分享','谢谢分享','多谢分享','感谢作者分享','谢谢坛友分享','感谢分享','支持分享','支持发帖','感谢发帖']
-replycount = (process.env.clreplycount) ? process.env.clreplycount : 100
+console.log('开始')
 !(async () => {
     if (!clcookiesArr[0]) {
         $.msg($.name, '请先添加cookie');
@@ -40,64 +40,39 @@ replycount = (process.env.clreplycount) ? process.env.clreplycount : 100
             $.nickName = '';
             islogin = true
             isnewmessage = true
+            var isrun = true
             newmessageurl=''
-            isrun = true
-            jrft = ''
+            jrft=''
             console.log(`\n******开始【账号${$.index}】*********\n`);
             await getbaseinfo()
             await $.wait(1500)
             await getmyuid()
-            if (!isrun) {
-                //await 
+            if (!islogin || !isrun) {               
+                continue
+            } else if (!isrun) {
                 continue
             }
-            if (!islogin) {               
-                continue
-            }
+            await $.wait(2000)
+            await getbankinfo()
             await $.wait(1500)
-            await gettodayurl() 
-
-            if (isrun) {
-                if (replycount > 60 - jrft) {
-                    if (60 - jrft > 0) {
-                        replycount = 60 - jrft
-                    } else {
-                        console.log('您今日回帖数量已超过60，停止回帖')
-                        continue
-                    }
-
-                }                
-                if (replycount > tidarrs.length) {
-                    replycount = tidarrs.length
-
-                } else {
-                    
+            let js=0            
+            while (isnewmessage && js<5) {                
+                //console.log(isnewmessage)
+                await $.wait(1500)
+                js += 1
+                await getmesssage()
+                //console.log(newmessageurl)
+                if (newmessageurl === newmessageurlold) {
+                    break;
                 }
-                console.log(`本次将回复 ${replycount} 个帖子`)
-                for (var j = 0; j < replycount; j++) {
-                    var a = random(0,reply_news_arr.length - 1)
-                    var reply_news = reply_news_arr[a]
-                    var x = random(0,tidarrs.length - 1)
-                    var y = random(1025000,1600000)
-                    //console.log(a,reply_news_arr.length,reply_news,x,y)
-                    console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
-                    await reply(tidarrs[x],titlearrs[x],reply_news)
-                    var z = tidarrs.length
-
-                    authorarrs.splice(x,1)
-                    titlearrs.splice(x,1)
-                    tidarrs.splice(x,1)
-                    if (!isrun || tidarrs.length != z - 1) {
-                        break
-                    }                    
-                    console.log(`随机等待${y/1000}秒后回复下一个\n`)
-                    await $.wait(y)
+                if (newmessageurl) {
+                    console.log('第'+js+'次查看消息')
+                    await $.wait(1500)                    
+                    await getreadmessage(newmessageurl, js)
+                    newmessageurlold = newmessageurl
+                    await $.wait(1500)                      
                 }
-                //await reply()
-                 
-            }          
-
-                        
+            }              
         }
     }
     if (message !== '' && (ismessage || time.getHours()  == 21)) {
@@ -152,9 +127,9 @@ async function gettodaysend() {
                     if (data) {
                         //console.log(data)
                         var ft = /平均每日發帖\<\/th\>\<th\>(.+?)\</.exec(data)[1]
-                        jrft = /今日(\d+)篇/.exec(ft)[1]
+                        var jrft = /今日(\d+)篇/.exec(ft)[1]
                         console.log(ft)
-                        message += ft
+                        message += `${ft}\n`
                     }
                 }
             } catch (e) {
@@ -168,121 +143,36 @@ async function gettodaysend() {
 
 }
 
-
-async function reply(tid,title,reply) {
+async function getmesssage() {
     return new Promise(resolve => {
-        $.post(posturl("post.php?",tid,title,reply), (err, resp, data) => {
+        $.get(geturl('message.php'), (err, resp, data) => {
             try {
                 if (err) {
                     $.logErr(err)
                 } else {
                     if (data) {
                         //console.log(data)
-                        
-                        if (data.indexOf('發貼完畢點擊') != -1) {
-                            console.log('回复成功')
-                            isrun = true
-                            return
-                        } else if (data.indexOf('所屬的用戶組') != -1) {
-                            console.log('所属用户组今日回帖已达上限，停止回复')
-                            isrun = false
-                            return
-                        } else if (data.indexOf('灌水預防機制') != -1) {
-                            console.log('新手1024秒限制中')
-                            isrun = true
+                        if (data.indexOf('您的信箱已滿') != -1) {
+                            console.log('有新消息但信箱已满,无法查看，请手动删除部分消息')
+                            message += '有新消息但信箱已满,无法查看，请手动删除部分消息\n\n'
+                            isnewmessage = false
+                            ismessage = true
                             return;
-                        }
-                    } else {
-                        isrun = false
-                    }
-                    
-                }
-            } catch (e) {
-                $.logErr(e)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
 
-async function gettodayurl() {
-    return new Promise(resolve => {
-        $.get(geturl('thread0806.php?fid=7&search=today'), (err, resp, data) => {
-            try {
-                if (err) {
-                    $.logErr(err)
-                } else {
-                    if (data) {
-                        //console.log(data)
-                        var ptzt
-                        if (data.indexOf('普通主題') != -1) {
+                        }
+                       if (data.indexOf('否') != -1) {
+                           newmessagetime = /\<td class\=\"tac\"\>(.+?)\<\/td\>\s+.+?\s+\<font color\=\"red\"\>否/.exec(data)[1]
+                           newmessageauthor = /uid\=(\d+)\"\>(.+?)\<\/a\>\<\/td\>\s+.+?\s+.+?\s+.+?\s+\<font color\=\"red\"\>否/.exec(data)[2]
+                           newmessagetitle = /mid=(\d+)\"\>(.+?)\<\/a\>\s+.+?\s+.+?\s+.+?\s+.+?\s+.+?\s+\<font color\=\"red\"\>否/.exec(data)[2]
+                           newmessageurl = /href\=\"(.+?)\"\>.+?\s+.+?\s+.+?\s+.+?\s+.+?\s+.+?\s+\<font color\=\"red\"\>否/.exec(data)[1]
+                           isnewmessage = true    
+                           ismessage = true                  
+                           console.log('有新消息，尝试去查看')
+                           return                            
+                        } else {
+                            isnewmessage = false
+                        }
 
-                            ptzt = data.indexOf('普通主題')
-                            //console.log(ptzt)
-                        }
-                        //data=JSON.stringify(data)
-                        data=data.slice(ptzt)
-                        //console.log(ptzt)
-                        var retodayurl=/\<h3\>\<a href\=\"(.+?)\"/g
-                        var retodayauthor=/href\=\".+?class=\"bl\"\>(.+?)\<\/a\>/g
-                        var retodaytitle=/target\=\"\_blank\" id\=\"\"\>(.+?)\</g
-                        urlarr=data.match(retodayurl)
-                        //console.log(urlarr)
-                        for (var i = 0; i < urlarr.length; i++) {
-                            if (urlarr[i].indexOf('tid') != -1) {
-                                tidarrs.push(urlarr[i].match(/tid\=(\d+)\"/)[1])
-                            } else if (urlarr[i].indexOf('html') != -1) {
-                                tidarrs.push(urlarr[i].match(/htm_data\/\d+\/\d+\/(\d+)\.html/)[1])
-                            } else {
-                                console.log('出错了，停止运行')
-                                isrun = false
-                                return
-                            }
-                            
-                        }
-                        authorarr=data.match(retodayauthor)
-                        for (var i = 0; i < authorarr.length; i++) {
-                            authorarrs.push(authorarr[i].match(/bl\"\>(.+?)\</)[1])
-                        } 
-                        titlearr=data.match(retodaytitle)  
-                        for (var i = 0; i < titlearr.length; i++) {
-                            titlearrs.push(titlearr[i].match(/\>(.+?)\</)[1])
-                        }  
-                        if(authorarrs.length != tidarrs.length || authorarrs.length != titlearrs.length) {
-                            console.log('出错了，停止运行')
-                            isrun = false
-                            return
-                        }                   
-                        //console.log(tidarrs)
-                        //console.log(authorarrs)
-                        //console.log(titlearrs)
-                        for (var i = authorarrs.length - 1; i > -1; i--) {
-                            //console.log(i,tidarrs.length)
-                            if (blacklists.indexOf(authorarrs[i]) != -1) {
-                                console.log(`发现黑名单${authorarrs[i]}的帖子${titlearrs}:${tidarrs[i]},进行移除`)
-                                tidarrs.splice(i,1)
-                                titlearrs.splice(i,1)
-                                authorarrs.splice(i,1)
-                                if (tidarrs.indexOf(authorarrs[i]) == -1 && titlearrs.indexOf(authorarrs[i]) == -1) {
-                                    console.log('移除成功,剩余列表长度' + tidarrs.length)
-                                    
-                                } else {
-                                    console.log('移除黑名单帖子失败，停止运行')
-                                    isrun = false
-                                    return;
-                                }
-
-                            }
-                        }
-                        if(titlearrs.length != tidarrs.length) {
-                            console.log('出错了，停止运行')
-                            isrun = false
-                            return
-                        }    
-                        //console.log(tidarrs)
-                        console.log('获取帖子成功，开始回帖')
-                        isrun = true
                     }
                 }
             } catch (e) {
@@ -296,9 +186,30 @@ async function gettodayurl() {
 
 }
 
-function random(b, a) {
-    randomtime = Math.round(Math.random() * (a - b) + b)
-    return randomtime
+async function getreadmessage(newmessageurl,js) {
+    return new Promise(resolve => {
+        $.get(geturl(newmessageurl), (err, resp, data) => {
+            try {
+                if (err) {
+                    $.logErr(err)
+                } else {
+                    if (data) {
+                        //console.log(data)
+                        newmessagecontent = /content\'\>(.+?)\</.exec(data)[1]
+                        //console.log(newmessagecontent)
+                        console.log(`新消息${js}来自：${newmessageauthor}\n标题：${newmessagetitle}\n内容：${newmessagecontent}\n时间：${newmessagetime}`)
+                        message += `新消息${js}来自：${newmessageauthor}\n标题：${newmessagetitle}\n内容：${newmessagecontent}\n时间：${newmessagetime}\n\n`
+
+                    }
+                }
+                
+            } catch (e) {
+                $.logErr(e)
+            } finally {
+                resolve();
+            }
+        })
+    })      
 }
 
 async function getbaseinfo() {
@@ -322,9 +233,8 @@ async function getbaseinfo() {
                             isrun = false
                             return
                         }
-                        
-                       username = /font-weight\:bold\"\>(.+?)\</.exec(data)[1]
                        
+                       username = /font-weight\:bold\"\>(.+?)\</.exec(data)[1]
                        level = /span class\=\"s3\"\>(.+?)\</.exec(data)[1]
                        lastlogintime = /上次登錄時間\:(.+?)\|/.exec(data)[1]
                        ip = /您的IP \:(.+?)\</.exec(data)[1]
@@ -334,14 +244,7 @@ async function getbaseinfo() {
                        tz = /共發表帖子\:(.+?)\|/.exec(data)[1]
                        console.log(`用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`)
                        message += `用户${$.index}：${username}\n等级：${level}\n上次登录时间：${lastlogintime}\n当前IP：${ip}\n威望：${ww}\n金钱：${money}\n贡献：${gx}\n共发表帖子：${tz}`
-                        var reblacklist = /action=show&username\=(.+?)\"\>/g
-                        //console.log(data)
-                        blacklist = data.match(reblacklist)
-                        for (var i = 0; i < blacklist.length; i ++) {
-                            blacklists.push(/name\=(.+?)\"/.exec(blacklist[i])[1])
-                        }
-                        blacklists = blacklists.concat(['administrator','vonder','痴儿','lj413025','老地方见','大紅鷹','tsq456'])
-                        //console.log(blacklists)
+
                     }
                 }
             } catch (e) {
@@ -406,32 +309,7 @@ function geturl(url) {
     return options
 
 }
-function posturl(url,tid,title,reply_news) {
-    let opt = {
-        url: "http://t66y.com/" + url,
-        headers: {
-            //'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Encoding': 'gzip, deflate',
-            'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6,zh-TW;q=0.5',
 
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Cookie': cookie,
-            'DNT': '1',
-            'Host': 't66y.com',
-            'Origin': 'null',
-            'Proxy-Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'User-Agent': UA,
-
-            
-        },
-        
-        body: `atc_usesign=1&atc_convert=1&atc_autourl=1&atc_title=${title}&atc_content=${reply_news}&step=2&action=reply&fid=7&tid=${tid}&atc_attachment=none&pid=&article=&touid=&verify=verify&Submit=提+交`
-
-    }
-    //console.log(opt)
-    return opt
-}
 
 
 // prettier-ignore
