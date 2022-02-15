@@ -7,22 +7,22 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
 let ismessage,UA='',myuid='',jrft=''
-if (process.env.CLCOOKIE1) {
-  if (process.env.CLCOOKIE1.indexOf('&') > -1) {
-    clcookiesArr = process.env.CLCOOKIE1.split('&');
-  } else if (process.env.CLCOOKIE1.indexOf('\n') > -1) {
-    clcookiesArr = process.env.CLCOOKIE1.split('\n');
-  } else if (process.env.CLCOOKIE1.indexOf('@') > -1) {
-    clcookiesArr = process.env.CLCOOKIE1.split('@');
+if (process.env.CLCOOKIE) {
+  if (process.env.CLCOOKIE.indexOf('&') > -1) {
+    clcookiesArr = process.env.CLCOOKIE.split('&');
+  } else if (process.env.CLCOOKIE.indexOf('\n') > -1) {
+    clcookiesArr = process.env.CLCOOKIE.split('\n');
+  } else if (process.env.CLCOOKIE.indexOf('@') > -1) {
+    clcookiesArr = process.env.CLCOOKIE.split('@');
   } else {
-    clcookiesArr = [process.env.CLCOOKIE1];
+    clcookiesArr = [process.env.CLCOOKIE];
   }
 }
 
 let time = new Date()
-console.log(time.getHours())
-if (process.env.UA1) {
-    UA = process.env.UA1
+console.log('当前小时' + time.getHours())
+if (process.env.UA) {
+    UA = process.env.UA
 }
 !(async () => {
     if (!clcookiesArr[0]) {
@@ -76,7 +76,7 @@ if (process.env.UA1) {
         }
     }
     //if (message !== '' && (ismessage || time.getHours()  == 21)) {
-    if (message && ismessage) {    
+    if (message && (ismessage || time.getHours()  == 13)) {    
         if ($.isNode()) {
             await tgBotNotify($.name, message, '', `\n`);
         } else {
