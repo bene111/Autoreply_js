@@ -78,7 +78,7 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
-                    /console.log(`当前在第 ${j+1} 次回复,回复内容为: ${reply_news} `)
+                    console.log(`当前在第 ${j+1} 次回复,回复内容为: ${reply_news} `)
                     await reply(tidarrs[x],titlearrs[x],reply_news)
                     var z = tidarrs.length
 
@@ -94,7 +94,7 @@ let clreplycount = (process.env.CLREPLYCOUNT) ? process.env.CLREPLYCOUNT : 10
                     }
  
                     if (jrft > clreplycount) {
-                        console.log('当前当日发帖数量已超过设置值：' + clreplycount + '\n停止发帖')
+                        console.log('当前当日发帖数量:' + jrft + ',已超过设置值：' + clreplycount + '\n停止发帖')
                         console.log('如需继续发帖请调大 CLREPLYCOUNT 值')
                         break;
                     }        
