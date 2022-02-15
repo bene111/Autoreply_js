@@ -216,6 +216,8 @@ async function getbaseinfo() {
 
                     if (data) {
                         console.log('基础信息'+data)
+                        data = JSON.stringfy(data)
+                        console.log('基础'+data)
                         if (data.indexOf('您尚未') != -1) {
                            console.log(`账号${$.index}cookie已失效，请重新抓取`)
                            islogin = false 
