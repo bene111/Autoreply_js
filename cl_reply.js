@@ -2,6 +2,7 @@
 22 0,20 * * * caoliu论坛信息查询
 */
 const $ = new Env("小草信息查询");
+const timeout = 10000
 const notify = $.isNode() ? require('./sendNotify') : '';
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
