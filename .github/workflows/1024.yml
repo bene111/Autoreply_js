@@ -21,7 +21,7 @@ jobs:
     - name: npm install
       run : |
         npm install
-
+        npm install axios --save
 
     - name: "运行自动回复"
       env:
