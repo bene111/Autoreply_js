@@ -92,7 +92,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     await gettodaysend()  
                     console.log('当前今日发帖数量：' + jrft)
                     if (!isrun || tidarrs.length != z - 1) {
-                        message += '今日发贴数量：' + jrft + '\n'
+                        message += '\n今日发贴数量：' + jrft + '\n'
                         ismessage = true
                         break
                     }
@@ -100,7 +100,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     if (jrft > clreplycount) {
                         console.log('当前当日发帖数量:' + jrft + ',已超过设置值：' + clreplycount + '\n停止发帖')
                         console.log('如需继续发帖请调大 CLREPLYCOUNT 值')
-                        message += '今日发贴数量：' + jrft + '\n'
+                        message += '\n今日发贴数量：' + jrft + '\n'
                         ismessage = true
                         break;
                     }        
