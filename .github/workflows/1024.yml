@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js 10.x
+    - name: Use Node.js 16.x
       uses: actions/setup-node@v1
       with:
-          node-version: 10.x
+          node-version: 16.x
     - name: npm install
       run : |
         npm install
@@ -31,5 +31,4 @@ jobs:
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
-      run: |
-        node cl_reply.js
+      run: node cl_reply.js
