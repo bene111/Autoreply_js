@@ -24,6 +24,8 @@ if (process.env.UA) {
 }
 reply_news_arr = ['1024','感谢分享','感谢你的分享','谢谢分享','多谢分享','感谢作者分享','谢谢坛友分享','感谢分享','支持分享','支持发帖','感谢发帖']
 let clreplycount = process.env.CLREPLYCOUNT ? process.env.CLREPLYCOUNT : 10
+let minwaittime = process.env.MINWAITTIME ? process.env.MINWAITTIME : 1025
+let maxwaittime = process.env.MAXWAITTIME ? process.env.MAXWAITTIME : 1600
 console.log('CLREPLYCOUNT值为：' + clreplycount)
 !(async () => {
     if (!clcookiesArr[0]) {
@@ -75,7 +77,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     var a = random(0,reply_news_arr.length - 1)
                     var reply_news = reply_news_arr[a]
                     var x = random(0,tidarrs.length - 1)
-                    var y = random(1025000,1600000)
+                    var y = random(minwaittime, maxwaittime)
                     console.log(y)
                     //console.log(a,reply_news_arr.length,reply_news,x,y)
                     //console.log(`当前在第 ${j+1} 次回复，回复帖子为 ${authorarrs[x]} 的: ${titlearrs[x]} ,回复内容为: ${reply_news} `)
@@ -89,23 +91,26 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     await gettodaysend()  
                     console.log('当前今日发帖数量：' + jrft)
                     if (!isrun || tidarrs.length != z - 1) {
-                        message += '今日发帖数量：' + jrft
-
+                        message += '今日发贴数量：' + jrft + '\n'
+                        ismessage = true
                         break
                     }
  
                     if (jrft > clreplycount) {
                         console.log('当前当日发帖数量:' + jrft + ',已超过设置值：' + clreplycount + '\n停止发帖')
                         console.log('如需继续发帖请调大 CLREPLYCOUNT 值')
+                        message += '今日发贴数量：' + jrft + '\n'
+                        ismessage = true
                         break;
                     }        
-                    if (!y || y < 100000) {//等待时间为空或者小于100秒
+                    if (!y || y < 100) {//等待时间为空或者小于100秒
                         console.log('程序可能有问题了，停止运行')
                         await tgBotNotify($.name, '程序可能有问题了，停止运行', `\n`);
+                        break;
                     }
-                    console.log(`随机等待${y/1000}秒后回复下一个\n`)
+                    console.log(`随机等待${y}秒后回复下一个\n`)
                     
-                    await $.wait(y)
+                    await $.wait(y * 1000)
                 }
                 //await reply()
                  
