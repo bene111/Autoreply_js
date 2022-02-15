@@ -7,7 +7,7 @@ let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',lev
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
 let ismessage,UA='',urlarr=[],authorarr=[],urlarrs=[],authorarrs=[],blacklist=[],blacklists=[],isrun,titlearr=[],titlearrs=[]
 let tidarrs=[],replycount='',reply_news='',reply_news_arr=[],myuid='',jrft=''
-if (process.env.clcookie) {
+if (process.env.CLCOOKIE) {
   if (process.env.CLCOOKIE.indexOf('&') > -1) {
     clcookiesArr = process.env.CLCOOKIE.split('&');
   } else if (process.env.CLCOOKIE.indexOf('\n') > -1) {
