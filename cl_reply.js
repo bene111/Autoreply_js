@@ -211,14 +211,11 @@ async function getreadmessage(newmessageurl,js) {
 
 async function getbaseinfo() {
     let head = await geturl()
-    return new Promise(resolve => {
-        axios.get('http://t66y.com/index.php', {headers:head.headers}, async (err, resp, data) => {
-            try {
-                if (err) {
-                    $.logErr(err)
-                } else {
+    //return new Promise(resolve => {
+        let data = axios.get('http://t66y.com/index.php', {headers: head.headers})
+
                     if (data) {
-                        //console.log('基础信息'+data)
+                        console.log('基础信息'+data)
                         if (data.indexOf('您尚未') != -1) {
                            console.log(`账号${$.index}cookie已失效，请重新抓取`)
                            islogin = false 
@@ -245,13 +242,7 @@ async function getbaseinfo() {
 
                     }
                 }
-            } catch (e) {
-                $.logErr(e)
-            } finally {
-                resolve();
-            }
-        })
-    })
+
 }
 
 async function getbankinfo() {
