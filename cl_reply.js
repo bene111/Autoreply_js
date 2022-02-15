@@ -9,6 +9,7 @@ let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney
 let ismessage,UA='',myuid='',jrft=''
 console.log('开始2')
 clcookie = process.env.CLCOOKIE1
+clcookiesArr.push(clcookie)
 let time = new Date()
 if (process.env.UA1) {
     UA = process.env.UA1
@@ -16,7 +17,7 @@ if (process.env.UA1) {
 console.log('开始3')
 //!(async () => {
 async function main() {
-    if (!clcookie1) {
+    if (!clcookie) {
         $.msg($.name, '请先添加cookie');
         return;
     }
