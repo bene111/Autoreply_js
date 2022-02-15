@@ -1,6 +1,7 @@
 /*
 22 0,20 * * * caoliu论坛信息查询
 */
+console.log('开始')
 const $ = new Env("小草信息查询");
 const notify = $.isNode() ? require('./sendNotify') : '';
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
