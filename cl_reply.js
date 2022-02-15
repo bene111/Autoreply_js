@@ -8,24 +8,14 @@ let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',lev
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
 let ismessage,UA='',myuid='',jrft=''
 console.log('开始2')
-if (process.env.clcookie) {
-  if (process.env.clcookie.indexOf('&') > -1) {
-    clcookiesArr = process.env.clcookie.split('&');
-  } else if (process.env.clcookie.indexOf('\n') > -1) {
-    clcookiesArr = process.env.clcookie.split('\n');
-  } else if (process.env.clcookie.indexOf('@') > -1) {
-    clcookiesArr = process.env.clcookie.split('@');
-  } else {
-    clcookiesArr = [process.env.clcookie];
-  }
-}
+clcookie = process.env.CLCOOKIE1
 let time = new Date()
-if (process.env.clua) {
+if (process.env.UA) {
     UA = process.env.clua
 }
 console.log('开始3')
 !(async () => {
-    if (!clcookiesArr[0]) {
+    if (!clcookie1) {
         $.msg($.name, '请先添加cookie');
         return;
     }
