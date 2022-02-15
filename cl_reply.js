@@ -101,7 +101,8 @@ function getmyuid() {
                     if (data) {
                         //console.log(data)
                         myuid = /\（UID\:(\d+)\）/.exec(data)[1]
-                        console.log('UID:' + myuid)
+                        //console.log('UID:' + myuid)
+                        message += 'UID:' + myuid
                         await gettodaysend()
                     }
                 }
@@ -314,8 +315,8 @@ function tgBotNotify(text, desp) {
     return new Promise((resolve) => {
         if (process.env.TG_BOT_TOKEN && process.env.TG_USER_ID) {
             const options = {
-                url: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
-                body: `chat_id=${TG_USER_ID}&text=${text}\n\n${desp}&disable_web_page_preview=true`,
+                url: `https://api.telegram.org/bot${process.env.TG_BOT_TOKEN}/sendMessage`,
+                body: `chat_id=${process.env.TG_USER_ID}&text=${text}\n\n${desp}&disable_web_page_preview=true`,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
