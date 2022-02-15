@@ -1,6 +1,7 @@
 /*
 22 0,20 * * * caoliu论坛信息查询
 */
+const a = new Env('信息查询')
 const axios= require('axios')
 console.log('小草信息查询')
 
