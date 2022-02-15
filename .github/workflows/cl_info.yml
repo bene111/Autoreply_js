@@ -26,8 +26,8 @@ jobs:
 
     - name: "运行脚本"
       env:
-        CLCOOKIE1: ${{ secrets.CLCOOKIE1 }}
-        UA1: ${{ secrets.UA1 }}
+        CLCOOKIE: ${{ secrets.CLCOOKIE1 }}
+        UA: ${{ secrets.UA1 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
