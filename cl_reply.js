@@ -1,12 +1,13 @@
 /*
 22 0,20 * * * caoliu论坛信息查询
 */
-console.log('开始')
+console.log('开始1')
 const $ = new Env("小草信息查询");
 const notify = $.isNode() ? require('./sendNotify') : '';
 let clcookie = '', clcookiesArr = [], cookie = '', message = '', username='',level='',ww='',ip='',lastlogintime='',money='',gx='',tz='',newmessagetitle='',newmessagecontent='',newmessageauthor='',newmessagetime='';
 let hqck='',hqlx='',hqcktime='',dqck='',dqlx='',dqcktime='',dqdqtime='',allmoney='',isnewmessage,newmessageurl,newmessageurlold=''
 let ismessage,UA='',myuid='',jrft=''
+console.log('开始2')
 if (process.env.clcookie) {
   if (process.env.clcookie.indexOf('&') > -1) {
     clcookiesArr = process.env.clcookie.split('&');
@@ -22,7 +23,7 @@ let time = new Date()
 if (process.env.clua) {
     UA = process.env.clua
 }
-console.log('开始')
+console.log('开始3')
 !(async () => {
     if (!clcookiesArr[0]) {
         $.msg($.name, '请先添加cookie');
