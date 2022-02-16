@@ -26,8 +26,8 @@ if (process.env.UA) {
 reply_news_arr = ['1024','感谢分享','感谢你的分享','谢谢分享','多谢分享','感谢作者分享','谢谢坛友分享','感谢分享','支持分享','支持发帖','感谢发帖']
 //let clreplycount = process.env.CLREPLYCOUNT ? process.env.CLREPLYCOUNT : 10
 let clreplycount = 51
-let minwaittime = process.env.MINWAITTIME ? process.env.MINWAITTIME : 1024
-let maxwaittime = process.env.MAXWAITTIME ? process.env.MAXWAITTIME : 1200
+let minwaittime = process.env.MINWAITTIME ? process.env.MINWAITTIME : 150
+let maxwaittime = process.env.MAXWAITTIME ? process.env.MAXWAITTIME : 650
 console.log('CLREPLYCOUNT值为：' + clreplycount)
 !(async () => {
     if (!clcookiesArr[0]) {
@@ -106,8 +106,8 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                         break;
                     }        
                     if (!y || y < 100) {//等待时间为空或者小于100秒
-                        console.log('程序可能有问题了，停止运行')
-                        await tgBotNotify($.name, '程序可能有问题了，停止运行', `\n`);
+                        console.log('程序可能出问题了，停止运行')
+                        await tgBotNotify($.name, '程序可能出问题了，停止运行\n今日发帖数量：' + jrft, `\n`);
                         break;
                     }
                     console.log(`随机等待${y}秒后回复下一个\n`)
