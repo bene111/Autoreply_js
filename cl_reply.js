@@ -28,7 +28,8 @@ reply_news_arr = ['感谢分享','感谢你的分享','谢谢分享','多谢分�
 let clreplycount = 51
 let minwaittime = process.env.MINWAITTIME ? process.env.MINWAITTIME : 150
 let maxwaittime = process.env.MAXWAITTIME ? process.env.MAXWAITTIME : 650
-if (process.env.ISNEWBODY && process.env.ISNEWBODY === true) {
+
+if (process.env.ISNEWBODY) {
     minwaittime = 1024
     maxwaittime = 1800
     console.log('本账号为新手上路账号')
