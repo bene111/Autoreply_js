@@ -33,7 +33,7 @@ if (process.env.ISNEWBODY) {
     minwaittime = 1024
     maxwaittime = 1800
     console.log('本账号为新手上路账号')
-}
+} 
 console.log('CLREPLYCOUNT值为：' + clreplycount)
 !(async () => {
     if (!clcookiesArr[0]) {
@@ -44,6 +44,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
         console.log('需手动抓取ua才可运行,且需保证cookie与ua对应,变量为：clua')
         return;
     }
+    await $.wait(10000)
     replycount = random(clreplycount - 20, clreplycount)
     console.log("共" + clcookiesArr.length + "个账号")
     ismessage = false
