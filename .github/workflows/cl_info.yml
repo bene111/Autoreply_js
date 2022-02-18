@@ -107,3 +107,51 @@ jobs:
 
       run: |
         node cl_info.js
+  Info5:
+    needs: Info3
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v1
+      with:
+          node-version: 16.x
+    - name: npm install
+      run : |
+        npm install
+        npm install axios --save
+
+    - name: "运行脚本"
+      env:
+        CLCOOKIE: ${{ secrets.CLCOOKIE5 }}
+        UA: ${{ secrets.UA5 }}
+        CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+
+      run: |
+        node cl_info.js
+  Info6:
+    needs: Info3
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v1
+      with:
+          node-version: 16.x
+    - name: npm install
+      run : |
+        npm install
+        npm install axios --save
+
+    - name: "运行脚本"
+      env:
+        CLCOOKIE: ${{ secrets.CLCOOKIE6 }}
+        UA: ${{ secrets.UA6 }}
+        CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+
+      run: |
+        node cl_info.js
