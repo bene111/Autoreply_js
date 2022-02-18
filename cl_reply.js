@@ -24,10 +24,15 @@ if (process.env.UA) {
     UA = process.env.UA
 }
 reply_news_arr = ['感谢分享','感谢你的分享','谢谢分享','多谢分享','感谢作者分享','谢谢坛友分享','感谢分享','支持分享','支持发帖','感谢发帖']
-//let clreplycount = process.env.CLREPLYCOUNT ? process.env.CLREPLYCOUNT : 54
+//let clreplycount = process.env.CLREPLYCOUNT ? process.env.CLREPLYCOUNT : 51
 let clreplycount = 51
 let minwaittime = process.env.MINWAITTIME ? process.env.MINWAITTIME : 150
 let maxwaittime = process.env.MAXWAITTIME ? process.env.MAXWAITTIME : 650
+if (process.env.ISNEWBODY && process.env.ISNEWBODY === true) {
+    minwaittime = 1024
+    maxwaittime = 1800
+    console.log('本账号为新手上路账号')
+}
 console.log('CLREPLYCOUNT值为：' + clreplycount)
 !(async () => {
     if (!clcookiesArr[0]) {
