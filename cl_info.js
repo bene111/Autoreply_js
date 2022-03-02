@@ -75,8 +75,8 @@ if (process.env.UA) {
             }              
         }
     }
-    //if (message !== '' && (ismessage || time.getHours()  == 21)) {
-    if (message && (ismessage || time.getHours()  == 13)) {    
+    //if (message !== '' && ismessage) {
+    if (message && ismessage) {    
         if ($.isNode()) {
             await tgBotNotify($.name, message, '', `\n`);
         } else {
