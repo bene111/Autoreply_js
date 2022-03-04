@@ -26,6 +26,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE1 }}
         UA: ${{ secrets.UA1 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
