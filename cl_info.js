@@ -76,7 +76,7 @@ if (process.env.UA) {
         }
     }
     //if (message !== '' && ismessage) {
-    if (message && ismessage) {    
+    if (message) {    
         if ($.isNode()) {
             await tgBotNotify($.name, message, '', `\n`);
         } else {
