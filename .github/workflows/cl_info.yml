@@ -52,6 +52,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE2 }}
         UA: ${{ secrets.UA2 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
@@ -76,6 +77,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE3 }}
         UA: ${{ secrets.UA3 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
@@ -100,6 +102,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE4 }}
         UA: ${{ secrets.UA4 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
@@ -124,6 +127,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE5 }}
         UA: ${{ secrets.UA5 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
@@ -148,6 +152,7 @@ jobs:
 
     - name: "运行脚本"
       env:
+        TZ: Asia/Shanghai  # 设置时区
         CLCOOKIE: ${{ secrets.CLCOOKIE6 }}
         UA: ${{ secrets.UA6 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
