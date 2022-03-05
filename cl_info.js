@@ -285,7 +285,7 @@ async function getbankinfo() {
                         let sjdqsjdt = new Date(sjdqsj.replace("-","/")); //定期到期时间
 
                         console.log('当前时间：' + time.format("yyyy-MM-dd hh:mm:ss"), '\n定期到期时间：' + sjdqsj)
-                        if (time < sjdqsjdt) {
+                        if (time > sjdqsjdt) {
                             //ismessage = true
                             await tgBotNotify($.name, `用户${$.index}：${username}\n定期存款到期时间：${sjdqsj}\n当前时间：${time.format("yyyy-MM-dd hh:mm:ss")}\n已到期，请及时处理`, '', `\n`)
                             message += `当前时间为：${time.format("yyyy-MM-dd hh:mm:ss")}\n当前账号定期存款已到期\n\n`  
