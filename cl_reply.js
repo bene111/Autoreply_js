@@ -101,7 +101,7 @@ console.log('CLREPLYCOUNT值为：' + clreplycount)
                     console.log('当前今日发帖数量：' + jrft)
                     if (!isrun || tidarrs.length != z - 1) {
                         message += '\n今日发贴数量：' + jrft + '\n'
-                        ismessage = true
+                        //ismessage = true
                         break
                     }
  
