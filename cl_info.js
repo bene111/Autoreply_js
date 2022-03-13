@@ -197,7 +197,7 @@ async function getreadmessage(newmessageurl,js) {
                 } else {
                     if (data) {
                         //console.log(data)
-                        newmessagecontent = /content\'\>(.+?)\</.exec(data)[1]
+                        newmessagecontent = /content\'\>(.+?)\<\/div/.exec(data)[1]
                         //console.log(newmessagecontent)
                         //console.log(`新消息${js}来自：${newmessageauthor}\n标题：${newmessagetitle}\n内容：${newmessagecontent}\n时间：${newmessagetime}`)
                         message += `新消息${js}来自：${newmessageauthor}\n标题：${newmessagetitle}\n内容：${newmessagecontent}\n时间：${newmessagetime}\n\n`
