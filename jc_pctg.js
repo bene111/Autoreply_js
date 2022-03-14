@@ -91,7 +91,7 @@ async function gettg() {
                         var d = new Date(data.updated_at*1000)
                         console.log('上次更新日期:' + d.getDate())  
                         console.log('当前日期:' + time.getDate())
-                        if (time.getDate() == d.getDate())   {
+                        if (time.getDate() !== d.getDate())   {
                             console.log('节点有更新')
                             ismessage = true
                             tgjdArr = data1.match(/http.+?\\n/g)
