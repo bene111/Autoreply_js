@@ -30,8 +30,8 @@ jobs:
         pccookie: ${{ secrets.PCCOOKIE }}
         #UA: ${{ secrets.UA1 }}
         #CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN_D }}
+        TG_USER_ID: ${{ secrets.TG_GROUP_ID }}
 
       run: |
         node jc_pctg.js
