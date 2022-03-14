@@ -95,7 +95,7 @@ async function gettg() {
                             console.log('节点有更新')
                             ismessage = true
                             tgjdArr = data1.match(/http.+?\\n/g)
-                            console.log(tgjdArr)
+                            //console.log(tgjdArr)
                             var jd = ''
                             for (let i = 1; i < tgjdArr.length; i++) {
                                 jd = tgjdArr[i].replace(/\\n/g, '').replace(/\\/g, '')
