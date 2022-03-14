@@ -21,7 +21,7 @@ if (process.env.pccookie) {
   }
 }
 var time = new Date()
-console.log(time.getHours())
+console.log(time)
 !(async () => {
     if (!pccookiesArr[0]) {
         $.msg($.name, '请先添加cookie，变量名 pccookie');
