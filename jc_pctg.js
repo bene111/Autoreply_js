@@ -3,7 +3,7 @@
 ck变量
 export pccookie=""
 */
-const $ = new Env("跑车");
+const $ = new Env("TG代理更新");
 //const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let pccookie = '', pccookiesArr = [], cookie = '', message = ''
