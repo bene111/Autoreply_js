@@ -1,4 +1,4 @@
-name: 信息查询
+name: TGPROXY
 
 on:
   workflow_dispatch: # 手动触发
