@@ -28,7 +28,7 @@ jobs:
       env:
         TZ: Asia/Shanghai  # 设置时区
         USERNAME: ${{ secrets.PCUSERNAME }}
-        PASSWARD: ${{ secrets.PCPASSWARD }}
+        PASSWORD: ${{ secrets.PCPASSWORD }}
         #UA: ${{ secrets.UA1 }}
         #CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN_D }}
