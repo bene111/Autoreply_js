@@ -27,7 +27,8 @@ jobs:
     - name: "运行脚本"
       env:
         TZ: Asia/Shanghai  # 设置时区
-        pccookie: ${{ secrets.PCCOOKIE }}
+        USERNAME: ${{ secrets.USERNAME }}
+        PASSWARD: ${{ secrets.PASSWARD }}
         #UA: ${{ secrets.UA1 }}
         #CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN_D }}
