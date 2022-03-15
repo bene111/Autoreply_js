@@ -95,11 +95,11 @@ async function gettg() {
                         if (!d) await notify.sendNotify($.name, `未获取到上次更新时间`, '', `\n`);
                         console.log('上次更新日期:' + d.getDate())  
                         console.log('当前日期:' + time.getDate())
-                        if (time.getDate() !== d.getDate())   {
+                        if (time.getDate() == d.getDate())   {
                             console.log('节点有更新')
                             ismessage = true
                             tgjdArr = data1.match(/http.+?\\n/g)
-                            console.log(tgjdArr)
+                            //console.log(tgjdArr)
                             var jd = ''
                             for (let i = 1; i < tgjdArr.length; i++) {
                                 jd = tgjdArr[i].replace(/\\n/g, '').replace(/\\/g, '')
