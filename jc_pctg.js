@@ -37,7 +37,7 @@ console.log(`当前日期：` + time.getDate() + `当前小时：` + time.getHou
     ismessage = false
     await getck(username,password,cookie)
     await $.wait(1500)
-    if (cookie && cookie.length > 100) {
+    if (cookie) {
         console.log('获取ck成功')
         await gettg()
     } else {
