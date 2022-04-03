@@ -335,10 +335,10 @@ async function flushusd(type,action,flushmoney) {
                         
                         if (data.indexOf('完成' ) != -1) {
                             console.log(`${a}${b} ${flushmoney}u 成功`) 
-                            if (type == '2') await tgBotNotify(`账号 ${$.index}：${a}到期并${b} ${flushmoney}u 成功`)                  
+                            if (type == '2') await tgBotNotify(`账号 ${username}：${a}到期并${b} ${flushmoney}u 成功`)                  
                         } else {
                             console.log(`${a}${b} ${flushmoney}u 失败`) 
-                            await tgBotNotify(`账号 ${$.index}：${a}到期但${b} ${flushmoney}u 失败`)
+                            await tgBotNotify(`账号 ${username}：${a}到期但${b} ${flushmoney}u 失败`)
                         }
 
                     } else {
