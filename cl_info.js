@@ -38,7 +38,7 @@ if (process.env.UA) {
     for (let i = 0; i < clcookiesArr.length; i++) {
         if (clcookiesArr[i]) {
             cookie = clcookiesArr[i]
-            $.index = i + 1;
+            $.index = i + 1; 
             $.nickName = '';
             islogin = true
             isnewmessage = true
@@ -279,11 +279,11 @@ async function getbankinfo() {
                         //dqck = /定期存款：(.+?)\</.exec(data)[1]
                         //console.log(`活期存款：${hqck}\n活期利息：${hqlx}\n活期存款时间：${hqcktime}\n定期存款：${dqck}\n定期利息：${dqlx}\n定期存款时间：${dqcktime}\n定期到期时间：${dqdqtime}\n总资产：${allmoney}\n`)
                         message += `活期存款：${hqck}\n活期利息：${hqlx}\n活期存款时间：${hqcktime}\n定期存款：${dqck}\n定期利息：${dqlx}\n定期存款时间：${dqcktime}\n定期到期时间：${dqdqtime}\n总资产：${allmoney}\n\n`
-                        if (dqcktime.length < 5) return
+                        if (dqcktime.length < 5) {
                         let dqsf = /\d+ (.+?)$/.exec(dqcktime)[1]
                         let sjdqsj = dqdqtime + ' ' + dqsf
                         let sjdqsjdt = new Date(sjdqsj.replace("-","/")); //定期到期时间
-                      
+                        }
                         if (dqlx > 1) {
                             console.log('定期存款已到期，准备去转 1u 刷新')
                             await flushusd('2','draw','30')//定期 取
