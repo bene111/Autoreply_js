@@ -288,7 +288,7 @@ async function getbankinfo() {
                             console.log('定期存款已到期，准备去转 1u 刷新')
                             await flushusd('2','draw','30')//定期 取
                         }
-                        //console.log('活期利息： ' + hqlx)
+                        console.log('活期利息： ' + hqlx)
                         if (hqlx > 1) {
                             console.log('活期存款已到期，准备去转 1u 刷新')
                             await flushusd('1','save','1') //活期 存
