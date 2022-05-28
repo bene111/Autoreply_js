@@ -79,7 +79,7 @@ jobs:
         CLCOOKIE: ${{ secrets.CLCOOKIE5 }}
         UA: ${{ secrets.UA5 }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
-        ISNEWBODY: ${{ secrets.NEWBODY }}
+        #ISNEWBODY: ${{ secrets.NEWBODY }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
@@ -103,7 +103,7 @@ jobs:
       env:
         CLCOOKIE: ${{ secrets.CLCOOKIE6 }}
         UA: ${{ secrets.UA6 }}
-        ISNEWBODY: ${{ secrets.NEWBODY }}
+        #ISNEWBODY: ${{ secrets.NEWBODY }}
         CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
         TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
