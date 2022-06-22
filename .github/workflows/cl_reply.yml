@@ -135,4 +135,29 @@ jobs:
 
       run: |
         node cl_reply.js
+  Info8:
+    #needs: Info3
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v1
+      with:
+          node-version: 16.x
+    - name: npm install
+      run : |
+        npm install
+        npm install axios --save
+
+    - name: "运行脚本"
+      env:
+        CLCOOKIE: ${{ secrets.CLCOOKIE8 }}
+        UA: ${{ secrets.UA8 }}
+        ISNEWBODY: ${{ secrets.NEWBODY }}
+        CLREPLYCOUNT: ${{ secrets.CLREPLYCOUNT }}
+        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        TG_USER_ID: ${{ secrets.TG_USER_ID }}
+
+      run: |
+        node cl_reply.js
 
