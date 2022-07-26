@@ -85,7 +85,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_info.js
+        #node cl_info.js
   Info4:
     needs: Info1
     runs-on: ubuntu-latest
@@ -135,7 +135,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_info.js
+        #node cl_info.js
   Info6:
     needs: Info4
     runs-on: ubuntu-latest
@@ -160,7 +160,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_info.js
+        #node cl_info.js
   Info7:
     needs: Info5
     runs-on: ubuntu-latest
