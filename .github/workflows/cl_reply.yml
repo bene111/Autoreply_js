@@ -34,7 +34,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_reply.js
+        #node cl_reply.js
   Info4:
     #needs: Info3
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_reply.js
+        #node cl_reply.js
 
   Info5:
     #needs: Info2
