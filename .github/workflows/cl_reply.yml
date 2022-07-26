@@ -6,7 +6,7 @@ on:
     branches:
       - main1
   schedule:
-    - cron: '26 3 * * *'
+    - cron: '26 5 * * *'
 
 
 jobs:
@@ -84,7 +84,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_reply.js
+        #node cl_reply.js
   Info6:
     #needs: Info3
     runs-on: ubuntu-latest
@@ -109,7 +109,7 @@ jobs:
         TG_USER_ID: ${{ secrets.TG_USER_ID }}
 
       run: |
-        node cl_reply.js
+        #node cl_reply.js
   Info7:
     #needs: Info3
     runs-on: ubuntu-latest
