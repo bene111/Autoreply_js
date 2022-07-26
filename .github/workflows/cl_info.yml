@@ -37,7 +37,7 @@ jobs:
         node cl_info.js
         
   Info2:
-    needs: Info1
+    #needs: Info1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -62,7 +62,7 @@ jobs:
       run: |
         node cl_info.js
   Info3:
-    needs: Info2
+    needs: Info1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -87,7 +87,7 @@ jobs:
       run: |
         node cl_info.js
   Info4:
-    needs: Info3
+    needs: Info1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -112,7 +112,7 @@ jobs:
       run: |
         node cl_info.js
   Info5:
-    needs: Info3
+    needs: Info4
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -137,7 +137,7 @@ jobs:
       run: |
         node cl_info.js
   Info6:
-    needs: Info3
+    needs: Info4
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
